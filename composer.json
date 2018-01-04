@@ -32,7 +32,8 @@
 		"latte/latte": "^2.4",
 		"tracy/tracy": "^2.4",
 		"dg/adminer-custom": "^1.9",
-		"aleswita/formrenderer": "^1.2"
+		"aleswita/formrenderer": "^1.2",
+		"kdyby/translation": "^2.5"
 	},
 	"require-dev": {
 		"nette/tester": "^2.0"

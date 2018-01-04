@@ -29,3 +29,10 @@ services:
 	- App\Forms\SignInFormFactory
 	- App\Forms\SignUpFormFactory
 	router: App\RouterFactory::createRouter
+
+extensions:
+	translation: Kdyby\Translation\DI\TranslationExtension
+
+translation:
+	default: cs
+	fallback: [cs_CZ, cs]

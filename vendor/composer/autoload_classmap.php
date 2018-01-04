@@ -8,6 +8,13 @@ $baseDir = dirname($vendorDir);
 return array(
     'AlesWita\\FormRenderer\\BootstrapV4Renderer' => $vendorDir . '/aleswita/formrenderer/src/BootstrapV4Renderer.php',
     'AlesWita\\FormRenderer\\Factory' => $vendorDir . '/aleswita/formrenderer/src/Factory.php',
+    'Kdyby\\StrictObjects\\Exception' => $vendorDir . '/kdyby/strict-objects/src/exceptions.php',
+    'Kdyby\\StrictObjects\\MemberAccessException' => $vendorDir . '/kdyby/strict-objects/src/exceptions.php',
+    'Kdyby\\Translation\\Exception' => $vendorDir . '/kdyby/translation/src/exceptions.php',
+    'Kdyby\\Translation\\InvalidArgumentException' => $vendorDir . '/kdyby/translation/src/exceptions.php',
+    'Kdyby\\Translation\\InvalidResourceException' => $vendorDir . '/kdyby/translation/src/exceptions.php',
+    'Kdyby\\Translation\\InvalidStateException' => $vendorDir . '/kdyby/translation/src/exceptions.php',
+    'Kdyby\\Translation\\LoaderNotFoundException' => $vendorDir . '/kdyby/translation/src/exceptions.php',
     'Latte\\CompileException' => $vendorDir . '/latte/latte/src/Latte/exceptions.php',
     'Latte\\Compiler' => $vendorDir . '/latte/latte/src/Latte/Compiler/Compiler.php',
     'Latte\\Engine' => $vendorDir . '/latte/latte/src/Latte/Engine.php',
