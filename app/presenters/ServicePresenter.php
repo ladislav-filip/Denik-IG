@@ -28,4 +28,9 @@ class ServicePresenter extends BasePresenter
         $this->redirect('Service:');
     }
 
+    public function actionUpgradeDb() {
+        $this->dbUpdater->updateDb();
+        $this->redirect('Service:');
+    }
+
 }

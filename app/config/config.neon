@@ -28,7 +28,7 @@ services:
 	- App\Forms\FormFactory
 	- App\Forms\SignInFormFactory
 	- App\Forms\SignUpFormFactory
-	- App\Model\DbUpdaterModel
+	- App\Model\DbUpdaterModel(%appDir%)
 	- App\Model\CacheManagModel(%tempDir%)
 	router: App\RouterFactory::createRouter
 
