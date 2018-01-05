@@ -16,8 +16,8 @@ session:
 
 
 database:
-	dsn: 'mysql:host=127.0.0.1;dbname=wordpress'
-	user: wordpress
+	dsn: 'mysql:host=127.0.0.1;dbname=denik-ig'
+	user: denik-ig
 	password: tukan
 	options:
 		lazy: yes
@@ -29,6 +29,7 @@ services:
 	- App\Forms\SignInFormFactory
 	- App\Forms\SignUpFormFactory
 	- App\Model\DbUpdaterModel
+	- App\Model\CacheManagModel(%tempDir%)
 	router: App\RouterFactory::createRouter
 
 extensions:
