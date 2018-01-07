@@ -15,4 +15,5 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
     /** @var \Kdyby\Translation\Translator @inject */
     public $translator;
+
 }

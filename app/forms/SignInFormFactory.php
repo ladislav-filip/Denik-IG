@@ -17,11 +17,14 @@ class SignInFormFactory
 	/** @var User */
 	private $user;
 
+    /** @var \Kdyby\Translation\Translator */
+    private $translator;
 
-	public function __construct(FormFactory $factory, User $user)
+	public function __construct(FormFactory $factory, User $user, \Kdyby\Translation\Translator $translator)
 	{
 		$this->factory = $factory;
 		$this->user = $user;
+		$this->translator = $translator;
 	}
 
 
@@ -31,22 +34,23 @@ class SignInFormFactory
 	public function create(callable $onSuccess)
 	{
 		$form = $this->factory->create();
-		$form->addText('username', 'Username:')
-			->setRequired('Please enter your username.');
 
-		$form->addPassword('password', 'Password:')
-			->setRequired('Please enter your password.');
+		$form->addText('username', $this->translate('Username'))
+			->setRequired($this->translate("requiredUsername"));
 
-		$form->addCheckbox('remember', 'Keep me signed in');
+		$form->addPassword('password', $this->translate('Password'))
+            ->setRequired($this->translate("requiredPassword"));
 
-		$form->addSubmit('send', 'Sign in');
+		$form->addCheckbox('remember', $this->translate('KeepSignIn'));
+
+		$form->addSubmit('send', $this->translate('SignIn'));
 
 		$form->onSuccess[] = function (Form $form, $values) use ($onSuccess) {
 			try {
 				$this->user->setExpiration($values->remember ? '14 days' : '20 minutes');
 				$this->user->login($values->username, $values->password);
 			} catch (Nette\Security\AuthenticationException $e) {
-				$form->addError('The username or password you entered is incorrect.');
+				$form->addError($this->translate('errorUsernameOrPassword'));
 				return;
 			}
 			$onSuccess();
@@ -54,4 +58,8 @@ class SignInFormFactory
 
 		return $form;
 	}
+
+	private function translate($message) {
+	    return $this->translator->translate("messages.sign.{$message}");
+    }
 }

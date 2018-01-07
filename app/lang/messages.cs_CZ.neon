@@ -1,3 +1,13 @@
 homepage:
 	helloWorld: "Ahoj světe!"
 	h1: "Investiční gramotnost - deník"
+	Administration: "Administrace"
+sign:
+    Username: "Uživatelské jméno"
+    Password: "Heslo"
+    SignIn: "Přihlásit"
+    SignOut: "Odhlásit"
+    KeepSignIn: "Zapamatovat přihlášení"
+    requiredUsername: "Zadejte uživatelské jméno"
+    requiredPassword: "Zadejte své heslo"
+    errorUsernameOrPassword: "Chybné uživatelské jméno nebo heslo"

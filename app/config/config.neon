@@ -24,8 +24,11 @@ database:
 
 
 services:
+	usersRepo: App\DAL\UsersRepo
 	settingsRepo: App\DAL\SettingsRepo
-	userManager: App\Model\UserManager
+	userManager:
+	    class: App\Model\UserManager
+	    inject: on
 	formFactory: App\Forms\FormFactory
 	signInFormFactory: App\Forms\SignInFormFactory
 	signInUpFactory: App\Forms\SignUpFormFactory

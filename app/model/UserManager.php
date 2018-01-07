@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\DAL\UsersRepo;
 use Nette;
 use Nette\Security\Passwords;
 
@@ -14,7 +15,7 @@ class UserManager implements Nette\Security\IAuthenticator
 	use Nette\SmartObject;
 
 	const
-		TABLE_NAME = 'users',
+		TABLE_NAME = 'lf_users',
 		COLUMN_ID = 'id',
 		COLUMN_NAME = 'username',
 		COLUMN_PASSWORD_HASH = 'password',
@@ -25,12 +26,19 @@ class UserManager implements Nette\Security\IAuthenticator
 	/** @var Nette\Database\Context */
 	private $database;
 
+    /**
+     * @var UsersRepo
+     */
+	private $usersRepo;
 
 	public function __construct(Nette\Database\Context $database)
 	{
 		$this->database = $database;
 	}
 
+    public function injectSettingsRepo(UsersRepo $usersRepo) {
+        $this->usersRepo = $usersRepo;
+    }
 
 	/**
 	 * Performs an authentication.
@@ -61,7 +69,6 @@ class UserManager implements Nette\Security\IAuthenticator
 		unset($arr[self::COLUMN_PASSWORD_HASH]);
 		return new Nette\Security\Identity($row[self::COLUMN_ID], $row[self::COLUMN_ROLE], $arr);
 	}
-
 
 	/**
 	 * Adds new user.
