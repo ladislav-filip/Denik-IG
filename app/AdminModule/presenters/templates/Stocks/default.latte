@@ -25,7 +25,7 @@
             <tr>
                 <th scope="row">{$d->code}</th>
                 <td class="text-left">{$d->name}</td>
-                <td class="text-right">{$d->price}</td>
+                <td class="text-right">${$d->price}</td>
                 <td>{$d->updated|date:'%d.%m.%Y'} {$d->updated|date:'H:i'}</td>
             </tr>
         {/foreach}

@@ -34,6 +34,7 @@ services:
 	signInFormFactory: App\Forms\SignInFormFactory
 	signInUpFactory: App\Forms\SignUpFormFactory
 	stockEditFactory: App\AdminModule\Presenters\forms\StockFormFactory
+	alphaVantage: App\Model\AlphaVantage
 	dbUpdaterModel:
 	    class: App\Model\DbUpdaterModel(%appDir%)
 	    inject: on

@@ -19,8 +19,15 @@ class StocksModel
      */
     private $stocksRepo;
 
+    /** @var \App\Model\AlphaVantage */
+    private $alphaVantage;
+
     public function injectStocksRepo(StocksRepo $stocksRepo) {
         $this->stocksRepo = $stocksRepo;
+    }
+
+    public function injectAlphaVantage(\App\Model\AlphaVantage $alphaVantage) {
+        $this->alphaVantage = $alphaVantage;
     }
 
     public function loadList() {
@@ -29,6 +36,9 @@ class StocksModel
 
     public function save($values)
     {
+        $code = $values['code'];
+        $data = $this->alphaVantage->getBatchStockQuotes([$code]);
+        $values['price'] = $data[$code];
         $this->stocksRepo->save($values);
     }
 

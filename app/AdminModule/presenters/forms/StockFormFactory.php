@@ -34,13 +34,12 @@ class StockFormFactory
         $form->addText('name', $this->translate('name'))
             ->setRequired($this->translate("requiredName"));
 
-        $form->addText('price', $this->translate('price'))
-            ->setRequired($this->translate("requiredPrice"));
-
         $form->addSubmit('send', $this->translate('Send'));
 
         $form->onSuccess[] = function ($form, $values) use ($onSuccess) {
-            $onSuccess($form->getValues(true));
+            $values = $form->getValues(true);
+            $values['code'] = strtoupper($values['code']);
+            $onSuccess($values);
         };
 
         return $form;
