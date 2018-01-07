@@ -73,6 +73,12 @@ class DbUpdaterModel {
         $lastVer = $this->getDbVersion();
         $arr = $this->getSqlUpdates($dir, $lastVer);
         $values = ['name' => 'db', 'value' => 0];
+
+        if ($lastVer > 0) {
+            $data = $this->settingsRepo->getByName('db');
+            $values['id'] = $data->id;
+        }
+
         foreach ($arr as $sqlFile) {
             $sql = file_get_contents($sqlFile);
             $this->settingsRepo->execSql($sql);

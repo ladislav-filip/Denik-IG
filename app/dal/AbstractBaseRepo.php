@@ -109,7 +109,7 @@ abstract class AbstractBaseRepo
         $assocValuesCi =array_change_key_case($assocValues, CASE_LOWER);
         // pokud existuje klíč ID, tak jde o update
         if (array_key_exists('id', $assocValuesCi)) {
-            $id = $assocValuesCi[id];
+            $id = $assocValuesCi['id'];
             unset($assocValuesCi[$id]);
             $this->database->query("UPDATE {$table} SET ", $assocValuesCi, "WHERE id = ?", $id);
         }
