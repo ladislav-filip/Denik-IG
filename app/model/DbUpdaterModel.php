@@ -8,26 +8,31 @@
 
 namespace App\Model;
 
+use App\DAL\SettingsRepo;
 use Nette;
 use Nette\Utils\Finder;
 
+/**
+ * Aktualizace databázového modelu
+ * Class DbUpdaterModel
+ * @package App\Model
+ */
 class DbUpdaterModel {
-
-    private $database;
 
     private $appDir;
 
-    public function __construct($appDir, Nette\Database\Connection $database)
+    /**
+     * @var SettingsRepo
+     */
+    private $settingsRepo;
+
+    public function __construct($appDir)
     {
         $this->appDir = $appDir;
-        $this->database = $database;
     }
 
-    private function isDbInitialized() {
-        $dbName = $this->getDbName();
-        $sql = "SELECT * FROM information_schema.tables WHERE table_schema = '{$dbName}' AND table_name = 'lf_settings' LIMIT 1 ";
-        $result = $this->database->fetch($sql);
-        return $result !== false;
+    public function injectSettingsRepo(SettingsRepo $settingsRepo) {
+        $this->settingsRepo = $settingsRepo;
     }
 
     private function getSqlUpdates($dir, $lastIdx) {
@@ -42,36 +47,38 @@ class DbUpdaterModel {
         return $arr;
     }
 
-    private function setVersionDb($ver) {
-        $this->database->query('INSERT INTO lf_settings', ['name' => 'db', 'value' => $ver]);
-    }
-
+    /**
+     * Název databáze
+     */
     public function getDbName() {
-        $result = $this->database->fetch('select database() as db');
-        return $result->db;
+        return $this->settingsRepo->getDbName();
     }
 
+    /**
+     * Aktuální verze DB
+     * @return int
+     * @throws \ReflectionException
+     */
     public function getDbVersion() {
-        if (!$this->isDbInitialized()) {
-            return 0;
-        }
-        else {
-            $value = $this->database->fetchField('SELECT value FROM lf_settings WHERE name = ?', 'db');
-            return intval($value);
-        }
+        return $this->settingsRepo->getDbVersion();
     }
 
+    /**
+     * Aktualizace DB struktur dle přiložených SQL skriptů
+     * @return mixed
+     * @throws \ReflectionException
+     */
     public function updateDb() {
         $dir = $this->appDir . '/sql';
         $lastVer = $this->getDbVersion();
         $arr = $this->getSqlUpdates($dir, $lastVer);
-
+        $values = ['name' => 'db', 'value' => 0];
         foreach ($arr as $sqlFile) {
             $sql = file_get_contents($sqlFile);
-            $this->database->query($sql);
-            $this->setVersionDb(++$lastVer);
+            $this->settingsRepo->execSql($sql);
+            $values['value'] = ++$lastVer;
+            $values['id'] = $this->settingsRepo->save($values);
         }
-
         return var_export($arr, true);
     }
 

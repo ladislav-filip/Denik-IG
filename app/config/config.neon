@@ -24,12 +24,15 @@ database:
 
 
 services:
-	- App\Model\UserManager
-	- App\Forms\FormFactory
-	- App\Forms\SignInFormFactory
-	- App\Forms\SignUpFormFactory
-	- App\Model\DbUpdaterModel(%appDir%)
-	- App\Model\CacheManagModel(%tempDir%)
+	settingsRepo: App\DAL\SettingsRepo
+	userManager: App\Model\UserManager
+	formFactory: App\Forms\FormFactory
+	signInFormFactory: App\Forms\SignInFormFactory
+	signInUpFactory: App\Forms\SignUpFormFactory
+	dbUpdaterModel:
+	    class: App\Model\DbUpdaterModel(%appDir%)
+	    inject: on
+	cacheManagModel: App\Model\CacheManagModel(%tempDir%)
 	router: App\RouterFactory::createRouter
 
 extensions:
