@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenters;
+namespace App\PublicModule\Presenters;
 
 use App\Forms;
 use Nette\Application\UI\Form;

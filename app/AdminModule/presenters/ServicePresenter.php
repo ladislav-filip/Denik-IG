@@ -6,7 +6,7 @@
  * Time: 21:34
  */
 
-namespace App\Presenters;
+namespace App\AdminModule\Presenters;
 
 class ServicePresenter extends BasePresenter
 {
