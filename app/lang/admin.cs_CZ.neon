@@ -1,3 +1,8 @@
 homepage:
 	helloWorld: "Ahoj světe!"
 	h1: "Investiční gramotnost - administrace"
+stocks:
+    code: "Kód"
+    name: "Akcie"
+    price: "Cena"
+    updated: "Aktualizováno"

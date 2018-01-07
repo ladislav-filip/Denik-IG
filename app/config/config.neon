@@ -26,14 +26,19 @@ database:
 services:
 	usersRepo: App\DAL\UsersRepo
 	settingsRepo: App\DAL\SettingsRepo
+	stocksRepo: App\DAL\StocksRepo
 	userManager:
 	    class: App\Model\UserManager
 	    inject: on
 	formFactory: App\Forms\FormFactory
 	signInFormFactory: App\Forms\SignInFormFactory
 	signInUpFactory: App\Forms\SignUpFormFactory
+	stockEditFactory: App\AdminModule\Presenters\forms\StockFormFactory
 	dbUpdaterModel:
 	    class: App\Model\DbUpdaterModel(%appDir%)
+	    inject: on
+	stocksModel:
+	    class: App\Model\StocksModel
 	    inject: on
 	cacheManagModel: App\Model\CacheManagModel(%tempDir%)
 	router: App\RouterFactory::createRouter

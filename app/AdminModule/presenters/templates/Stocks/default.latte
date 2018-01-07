@@ -1,0 +1,45 @@
+{block content}
+
+    <h1>{_messages.ig.Stocks}</h1>
+
+    <div class="row">
+        <div class="col-md-2">
+            <a n:href="Stocks:edit" class="btn btn-primary">Nova</a>
+        </div>
+    </div>
+
+
+    <hr/>
+
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th scope="col">{_admin.stocks.code}</th>
+                <th scope="col">{_admin.stocks.name}</th>
+                <th scope="col">{_admin.stocks.price}</th>
+                <th scope="col">{_admin.stocks.updated}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {foreach $data as $d}
+            <tr>
+                <th scope="row">{$d->code}</th>
+                <td class="text-left">{$d->name}</td>
+                <td class="text-right">{$d->price}</td>
+                <td>{$d->updated|date:'%d.%m.%Y'} {$d->updated|date:'H:i'}</td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+{/block}
+
+{block scripts}
+    {include parent}
+
+{/block}
+
+
+{block head}
+
+{/block}
