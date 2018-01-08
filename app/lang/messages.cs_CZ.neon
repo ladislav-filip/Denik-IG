@@ -13,3 +13,5 @@ sign:
     requiredUsername: "Zadejte uživatelské jméno"
     requiredPassword: "Zadejte své heslo"
     errorUsernameOrPassword: "Chybné uživatelské jméno nebo heslo"
+    infoSignOut: "Byli jste odhlášeni"
+    infoSignAnother: "Přihlaste se k jinému účtu"
