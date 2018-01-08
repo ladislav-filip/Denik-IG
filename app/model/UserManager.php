@@ -40,6 +40,13 @@ class UserManager implements Nette\Security\IAuthenticator
         $this->usersRepo = $usersRepo;
     }
 
+    private function initAuth($username, $password) {
+	    if ($username === 'ig' && $password === 'ig') {
+            return new Nette\Security\Identity(0, 'admin', [self::COLUMN_NAME => 'ig']);
+        }
+        throw new Nette\Security\AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
+    }
+
 	/**
 	 * Performs an authentication.
 	 * @return Nette\Security\Identity
@@ -48,6 +55,12 @@ class UserManager implements Nette\Security\IAuthenticator
 	public function authenticate(array $credentials)
 	{
 		list($username, $password) = $credentials;
+
+		/*
+		if ($this->usersRepo->getDbVersion() === 0) {
+		    return $this->initAuth($username, $password);
+        }
+        */
 
 		$row = $this->database->table(self::TABLE_NAME)
 			->where(self::COLUMN_NAME, $username)
