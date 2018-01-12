@@ -127,7 +127,7 @@ abstract class AbstractBaseRepo
      * @throws \ReflectionException
      */
     protected function getTableName() {
-        $result = str_ireplace('Repo', '',  (new \ReflectionClass($this))->getShortName());
+        $result = strtolower(str_ireplace('Repo', '',  (new \ReflectionClass($this))->getShortName()));
         return self::$dbPrefix . $result;
     }
 
