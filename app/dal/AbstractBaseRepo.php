@@ -55,7 +55,8 @@ abstract class AbstractBaseRepo
             if (!$this->isDbInitialized()) {
                 self::$dbVersion = 0;
             } else {
-                $value = $this->execScalarEx('value', ['name'=>'db']);
+                $sql = "SELECT value FROM lf_settings WHERE 1 = 1 AND (name='db')";
+                $value = $this->execScalar($sql);
                 self::$dbVersion = intval($value);
             }
         }
