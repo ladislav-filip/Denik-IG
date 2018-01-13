@@ -1,4 +1,5 @@
 /// <reference path="../../../../tsd/jquery/index.d.ts" />
+/// <reference path="../../../../tsd/bootstrap/index.d.ts" />
 var Stock = /** @class */ (function () {
     function Stock(url) {
         $("#table tbody").find("a[data-refresh]").click(function (e) {
@@ -9,6 +10,7 @@ var Stock = /** @class */ (function () {
             var $ico = $tr.find('[data-refresh]').find('i');
             $ico.removeAttr('class');
             $ico.addClass(spinner);
+            $ico.tooltip('hide');
             $.post(url, { idx: id }).done(function (payload) {
                 $tr.find("[data-price]").text(payload.data.price);
                 $tr.find("[data-updated]").text(payload.data.updated);

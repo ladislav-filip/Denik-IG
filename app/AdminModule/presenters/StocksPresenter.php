@@ -32,6 +32,11 @@ class StocksPresenter extends BasePresenter
 
     }
 
+    public function actionStocksRefresh() {
+        $this->stockModel->updatePricesAll();
+        $this->redirect('Stocks:');
+    }
+
     public function handleStockRefresh($idx) {
         $data = $this->stockModel->updatePrice($idx);
         $data['updated'] = date('d.m.Y H:i', strtotime($data['updated']));

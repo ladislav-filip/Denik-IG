@@ -3,8 +3,9 @@
     <h1>{_messages.ig.Stocks}</h1>
 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-6 text-left">
             <a n:href="Stocks:edit" class="btn btn-primary">Nova</a>
+            <a n:href="Stocks:stocksRefresh" class="btn btn-secondary">Aktualizovat</a>
         </div>
     </div>
 
@@ -28,7 +29,7 @@
                 <td class="text-left">{$d->name}</td>
                 <td class="text-right">$<span data-price="true">{$d->price}</span></td>
                 <td data-updated="true">{$d->updated|date:'%d.%m.%Y'} {$d->updated|date:'H:i'}</td>
-                <td><a data-refresh="true" href="javascript:;"><i class="fa fa-calculator"></i></a></td>
+                <td><a data-refresh="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="Aktualizovat" class="fa fa-calculator"></i></a></td>
             </tr>
         {/foreach}
         </tbody>

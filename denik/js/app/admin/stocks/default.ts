@@ -1,4 +1,5 @@
 /// <reference path="../../../../tsd/jquery/index.d.ts" />
+/// <reference path="../../../../tsd/bootstrap/index.d.ts" />
 
 class Stock {
 
@@ -12,6 +13,7 @@ class Stock {
             var $ico = $tr.find('[data-refresh]').find('i');
             $ico.removeAttr('class');
             $ico.addClass(spinner);
+            $ico.tooltip('hide');
 
             $.post(url, {idx: id}).done((payload) => {
                 $tr.find("[data-price]").text(payload.data.price);
