@@ -11,7 +11,7 @@
 
     <hr/>
 
-    <table class="table table-sm table-striped">
+    <table id="table" class="table table-sm table-striped">
         <thead>
             <tr>
                 <th scope="col">{_admin.stocks.code}</th>
@@ -23,12 +23,12 @@
         </thead>
         <tbody>
         {foreach $data as $d}
-            <tr>
+            <tr data-id="{$d->id}">
                 <th scope="row">{$d->code}</th>
                 <td class="text-left">{$d->name}</td>
-                <td class="text-right">${$d->price}</td>
-                <td>{$d->updated|date:'%d.%m.%Y'} {$d->updated|date:'H:i'}</td>
-                <td><a href="javascript:;"><i class="fa fa-calculator"></i></a></td>
+                <td class="text-right">$<span data-price="true">{$d->price}</span></td>
+                <td data-updated="true">{$d->updated|date:'%d.%m.%Y'} {$d->updated|date:'H:i'}</td>
+                <td><a data-refresh="true" href="javascript:;"><i class="fa fa-calculator"></i></a></td>
             </tr>
         {/foreach}
         </tbody>
@@ -38,6 +38,11 @@
 
 {block scripts}
     {include parent}
+
+    <script src="{$basePath}/js/app/admin/stocks/default.js"></script>
+    <script type="text/javascript">
+        new Stock({link stockRefresh!});
+    </script>
 
 {/block}
 

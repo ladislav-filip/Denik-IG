@@ -42,4 +42,21 @@ class StocksModel
         $this->stocksRepo->save($values);
     }
 
+    public function updatePrice($id) {
+        $data = $this->stocksRepo->getById($id);
+        $code = $data->code;
+        $data = $this->alphaVantage->getBatchStockQuotes([$code]);
+        $price = $data[$code];
+        $values = [
+            'id' => $id,
+            'code' => $code,
+            'price' => $price,
+            'updated' => null
+        ];
+        $this->stocksRepo->save($values);
+        $data = $this->stocksRepo->getById($id);
+
+        return $data;
+    }
+
 }

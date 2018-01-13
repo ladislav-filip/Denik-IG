@@ -32,6 +32,13 @@ class StocksPresenter extends BasePresenter
 
     }
 
+    public function handleStockRefresh($idx) {
+        $data = $this->stockModel->updatePrice($idx);
+        $data['updated'] = date('d.m.Y H:i', strtotime($data['updated']));
+        $this->payload->data = $data;
+        $this->sendPayload();
+    }
+
     protected function createComponentStockEdit() {
         return $this->stockFormFactory->create(function($values) {
             $this->stockModel->save($values);

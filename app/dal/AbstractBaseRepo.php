@@ -98,7 +98,7 @@ abstract class AbstractBaseRepo
 
     /**
      * Vloží nový anebo aktualizuje existující záznam v tabulce.
-     *Předpokládá, že v tabulce je primární klič s názvem ID
+     * Předpokládá, že v tabulce je primární klič s názvem ID
      * @param array $assocValues
      * @return mixed|null|string
      * @throws \ReflectionException
@@ -120,6 +120,13 @@ abstract class AbstractBaseRepo
             $id = $this->database->getInsertId();
         }
         return $id;
+    }
+
+    public function getById($id) {
+        $table = $this->getTableName();
+        $sql = "SELECT * FROM {$table} WHERE ";
+        $result = $this->database->fetch($sql, ['id' => $id]);
+        return $result;
     }
 
     /**
