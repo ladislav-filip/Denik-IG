@@ -19,6 +19,9 @@ class StocksPresenter extends BasePresenter
     /** @var StockFormFactory */
     private $stockFormFactory;
 
+    /** @var int ID aktuálně vybrané akcie  */
+    private $stockId = null;
+
     public function __construct(StockFormFactory $stockFormFactory)
     {
         $this->stockFormFactory = $stockFormFactory;
@@ -28,8 +31,8 @@ class StocksPresenter extends BasePresenter
         $this->template->data = $this->stockModel->loadList();
     }
 
-    public function actionEdit() {
-
+    public function actionEdit($id = null) {
+        $this->stockId = $id;
     }
 
     public function actionStocksRefresh() {
@@ -45,7 +48,8 @@ class StocksPresenter extends BasePresenter
     }
 
     protected function createComponentStockEdit() {
-        return $this->stockFormFactory->create(function($values) {
+        $data = is_null($this->stockId) ? null : $this->stockModel->getById($this->stockId);
+        return $this->stockFormFactory->create($data, function($values) {
             $this->stockModel->save($values);
             $this->redirect('Stocks:');
         });

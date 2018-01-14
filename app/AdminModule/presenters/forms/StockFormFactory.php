@@ -25,8 +25,10 @@ class StockFormFactory
         $this->translator = $translator;
     }
 
-    public function create(callable $onSuccess) {
+    public function create($data, callable $onSuccess) {
         $form = $this->factory->create();
+
+        $form->addHidden('id');
 
         $form->addText('code', $this->translate('code'))
             ->setRequired($this->translate("requiredCode"));
@@ -34,19 +36,35 @@ class StockFormFactory
         $form->addText('name', $this->translate('name'))
             ->setRequired($this->translate("requiredName"));
 
-        $form->addSubmit('send', $this->translate('Send'));
+        $form->addSubmit('send', $this->translate('Save', 'messages.ig'));
+
+        $form->addButton('cancel', $this->translate('Cancel', 'messages.ig'));
 
         $form->onSuccess[] = function ($form, $values) use ($onSuccess) {
             $values = $form->getValues(true);
+            unset($values['cancel']);
             $values['code'] = strtoupper($values['code']);
             $onSuccess($values);
         };
 
+        if (!is_null($data)) {
+            $form->setDefaults([
+                'id' => $data->id,
+                'code' => $data->code,
+                'name' => $data->name
+            ]);
+        }
+
         return $form;
     }
 
-    private function translate($message) {
-        return $this->translator->translate("admin.stocks.{$message}");
+    private function translate($message, $ns = null) {
+        if (is_null($ns)) {
+            return $this->translator->translate("admin.stocks.{$message}");
+        }
+        else {
+            return $this->translator->translate("{$ns}.{$message}");
+        }
     }
 
 }

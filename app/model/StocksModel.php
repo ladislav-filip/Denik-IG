@@ -80,6 +80,11 @@ class StocksModel
         return $data;
     }
 
+    public function getById($id)
+    {
+        return $this->stocksRepo->getById($id);
+    }
+
     /**
      * Vytáhne z pole dat s cenami tu podle kódu, pokud neexistuje tak vrátí -1
      * @param $data
@@ -94,5 +99,4 @@ class StocksModel
             return -1;
         }
     }
-
 }

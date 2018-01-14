@@ -1,5 +1,7 @@
 ig:
     Stocks: "Akcie"
+    Save: "Uložit"
+    Cancel: "Storno"
 homepage:
 	helloWorld: "Ahoj světe!"
 	h1: "Investiční gramotnost - deník"
