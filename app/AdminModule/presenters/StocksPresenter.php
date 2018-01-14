@@ -47,6 +47,11 @@ class StocksPresenter extends BasePresenter
         $this->sendPayload();
     }
 
+    public function handleStockDelete($idx) {
+        $this->stockModel->delete($idx);
+        $this->sendPayload();
+    }
+
     protected function createComponentStockEdit() {
         $data = is_null($this->stockId) ? null : $this->stockModel->getById($this->stockId);
         return $this->stockFormFactory->create($data, function($values) {

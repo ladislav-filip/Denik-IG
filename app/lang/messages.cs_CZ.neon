@@ -2,6 +2,9 @@ ig:
     Stocks: "Akcie"
     Save: "Uložit"
     Cancel: "Storno"
+    Delete: "Odstranit"
+    Refresh: "Aktualizovat"
+    OK: "OK"
 homepage:
 	helloWorld: "Ahoj světe!"
 	h1: "Investiční gramotnost - deník"

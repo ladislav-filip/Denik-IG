@@ -38,7 +38,8 @@ class StockFormFactory
 
         $form->addSubmit('send', $this->translate('Save', 'messages.ig'));
 
-        $form->addButton('cancel', $this->translate('Cancel', 'messages.ig'));
+        $form->addButton('cancel', $this->translate('Cancel', 'messages.ig'))
+            ->setHtmlAttribute('onclick', 'window.history.back();');
 
         $form->onSuccess[] = function ($form, $values) use ($onSuccess) {
             $values = $form->getValues(true);

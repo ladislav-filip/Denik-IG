@@ -6,3 +6,4 @@ stocks:
     name: "Akcie"
     price: "Cena"
     updated: "Aktualizováno"
+    DeleteQuestion: "Opravdu si přejete odstranit tuto akcii?"

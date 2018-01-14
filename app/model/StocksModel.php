@@ -80,6 +80,11 @@ class StocksModel
         return $data;
     }
 
+    public function delete($id)
+    {
+        $this->stocksRepo->deleteById($id);
+    }
+
     public function getById($id)
     {
         return $this->stocksRepo->getById($id);

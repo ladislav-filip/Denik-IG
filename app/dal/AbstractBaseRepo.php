@@ -129,6 +129,12 @@ abstract class AbstractBaseRepo
         return $result;
     }
 
+    public function deleteById($id) {
+        $table = $this->getTableName();
+        $sql = "DELETE FROM {$table} WHERE ";
+        $this->database->query($sql, ['id' => $id]);
+    }
+
     /**
      * Název databázové tabulky s prefixem podle názvu repozitáře
      * @return string

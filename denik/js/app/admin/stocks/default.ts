@@ -3,25 +3,55 @@
 
 class Stock {
 
-    constructor(url: string) {
+    urlDelete: string;
 
-        $("#table tbody").find("a[data-refresh]").click((e) => {
-            e.preventDefault();
-            var $tr = $(e.target).closest("tr");
-            var id = $tr.data("id");
-            var spinner = 'fa fa-spinner fa-spin fa-1x fa-fw';
-            var $ico = $tr.find('[data-refresh]').find('i');
+    urlRefresh: string;
+
+    stockId: number;
+
+    $tr: JQuery;
+
+    constructor(urlRefresh: string, urlDelete: string) {
+
+        this.urlRefresh = urlRefresh;
+        this.urlDelete = urlDelete;
+        $("#table tbody").find("a[data-refresh]").click((e) => this.refreshClick(e));
+        $("#table tbody").find("a[data-remove]").click((e) => this.deleteClick(e));
+        $("#dlgDelete").find("[data-save]").click((e) => this.deleteSaveClick(e));
+    }
+
+    rowClick(e: any): void {
+        e.preventDefault();
+        this.$tr = $(e.target).closest("tr");
+        this.stockId = this.$tr.data("id");
+    }
+
+    refreshClick(e: any): void {
+        this.rowClick(e);
+        var spinner = 'fa fa-spinner fa-spin fa-1x fa-fw';
+        var $ico = this.$tr.find('[data-refresh]').find('i');
+        $ico.removeAttr('class');
+        $ico.addClass(spinner);
+        $ico.tooltip('hide');
+
+        $.post(this.urlRefresh, {idx: this.stockId}).done((payload) => {
+            this.$tr.find("[data-price]").text(payload.data.price);
+            this.$tr.find("[data-updated]").text(payload.data.updated);
             $ico.removeAttr('class');
-            $ico.addClass(spinner);
-            $ico.tooltip('hide');
+            $ico.addClass('fa fa-calculator fa-1x');
+        });
+    }
 
-            $.post(url, {idx: id}).done((payload) => {
-                $tr.find("[data-price]").text(payload.data.price);
-                $tr.find("[data-updated]").text(payload.data.updated);
-                $ico.removeAttr('class');
-                $ico.addClass('fa fa-calculator fa-1x');
-            });
+    deleteClick(e: any): void {
+        this.rowClick(e);
+        $("#dlgDelete").modal('show');
+    }
 
+    deleteSaveClick(e: any): void {
+        $.post(this.urlDelete, {idx: this.stockId}).done((payload) => {
+            this.$tr.remove();
+            this.$tr = null;
+            $("#dlgDelete").modal('hide');
         });
     }
 
