@@ -36,6 +36,9 @@ class StocksModel
 
     public function save($values)
     {
+        if (empty($values['id'])) {
+            unset($values['id']);
+        }
         $code = $values['code'];
         $data = $this->alphaVantage->getBatchStockQuotes([$code]);
         $values['price'] = $this->getPrice($data, $code);
