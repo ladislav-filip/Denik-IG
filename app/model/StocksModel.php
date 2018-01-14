@@ -38,7 +38,7 @@ class StocksModel
     {
         $code = $values['code'];
         $data = $this->alphaVantage->getBatchStockQuotes([$code]);
-        $values['price'] = $data[$code];
+        $values['price'] = $this->getPrice($data, $code);
         $this->stocksRepo->save($values);
     }
 
@@ -58,7 +58,7 @@ class StocksModel
         $prices = $this->alphaVantage->getBatchStockQuotes($arr);
 
         foreach ($values as $d) {
-            $d['price'] = $prices[$d['code']];
+            $d['price'] = $this->getPrice($prices, $d['code']);
             $this->stocksRepo->save($d);
         }
     }
@@ -67,7 +67,7 @@ class StocksModel
         $data = $this->stocksRepo->getById($id);
         $code = $data->code;
         $data = $this->alphaVantage->getBatchStockQuotes([$code]);
-        $price = $data[$code];
+        $price = $this->getPrice($data, $code);
         $values = [
             'id' => $id,
             'code' => $code,
@@ -78,6 +78,21 @@ class StocksModel
         $data = $this->stocksRepo->getById($id);
 
         return $data;
+    }
+
+    /**
+     * Vytáhne z pole dat s cenami tu podle kódu, pokud neexistuje tak vrátí -1
+     * @param $data
+     * @param $code
+     * @return int
+     */
+    private function getPrice($data, $code) {
+        if (isset($data[$code])) {
+            return $data[$code];
+        }
+        else {
+            return -1;
+        }
     }
 
 }
