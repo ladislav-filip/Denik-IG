@@ -27,6 +27,7 @@ services:
 	usersRepo: App\DAL\UsersRepo
 	settingsRepo: App\DAL\SettingsRepo
 	stocksRepo: App\DAL\StocksRepo
+	recordsRepo: App\DAL\RecordsRepo
 	userManager:
 	    class: App\Model\UserManager
 	    inject: on
@@ -40,6 +41,9 @@ services:
 	    inject: on
 	stocksModel:
 	    class: App\Model\StocksModel
+	    inject: on
+	recordsModel:
+	    class: App\Model\RecordsModel
 	    inject: on
 	cacheManagModel: App\Model\CacheManagModel(%tempDir%)
 	router: App\RouterFactory::createRouter
