@@ -9,6 +9,7 @@ ig:
 menu:
     Administration: "Administrace"
     Private: "Soukromé"
+    Evidence: "Evidence"
 homepage:
 	helloWorld: "Ahoj světe!"
 	h1: "Investiční gramotnost - deník"
