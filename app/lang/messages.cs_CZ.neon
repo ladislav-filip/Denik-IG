@@ -5,6 +5,7 @@ ig:
     Delete: "Odstranit"
     Refresh: "Aktualizovat"
     OK: "OK"
+    AppName: "IG - Deník"
 menu:
     Administration: "Administrace"
     Private: "Soukromé"
