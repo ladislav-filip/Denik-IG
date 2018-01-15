@@ -137,11 +137,15 @@ abstract class AbstractBaseRepo
 
     /**
      * Název databázové tabulky s prefixem podle názvu repozitáře
+     * @param null $tableName
      * @return string
      * @throws \ReflectionException
      */
-    protected function getTableName() {
-        $result = strtolower(str_ireplace('Repo', '',  (new \ReflectionClass($this))->getShortName()));
+    protected function getTableName($tableName = null) {
+        if (empty($tableName)) {
+            $tableName = (new \ReflectionClass($this))->getShortName();
+        }
+        $result = strtolower(str_ireplace('Repo', '',  $tableName));
         return self::$dbPrefix . $result;
     }
 

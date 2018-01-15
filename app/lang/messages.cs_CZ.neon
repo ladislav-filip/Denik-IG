@@ -6,6 +6,13 @@ ig:
     Refresh: "Aktualizovat"
     OK: "OK"
     AppName: "IG - Deník"
+    Amount: "Množství"
+    Price: "Cena"
+    StockCode: "Kód akcie"
+    Created: "Vytvořeno"
+    PriceAll: "Cena celkem"
+    PriceNow: "Cena teď"
+    PriceAllNow: "Cena celkem teď"
 menu:
     Administration: "Administrace"
     Private: "Soukromé"

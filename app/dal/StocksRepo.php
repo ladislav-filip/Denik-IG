@@ -23,4 +23,12 @@ class StocksRepo extends AbstractBaseRepo
         $data = $this->database->query($sql);
         return $data;
     }
+
+    public function getByCode($code)
+    {
+        $table = $this->getTableName();
+        $sql = "SELECT * FROM {$table} WHERE";
+        $data = $this->database->fetch($sql, ['code' => $code]);
+        return $data;
+    }
 }

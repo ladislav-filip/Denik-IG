@@ -93,6 +93,11 @@ class StocksModel
         return $this->stocksRepo->getById($id);
     }
 
+    public function getByCode($code)
+    {
+        return $this->stocksRepo->getByCode(strtoupper($code));
+    }
+
     /**
      * Vytáhne z pole dat s cenami tu podle kódu, pokud neexistuje tak vrátí -1
      * @param $data

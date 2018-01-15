@@ -10,6 +10,11 @@ namespace App\DAL;
 
 use Nette;
 
+/**
+ * TODO: tato třída byla původně připravována pro napojení na Wordpress, což asi už nebude platit
+ * Class UsersRepo
+ * @package App\DAL
+ */
 class UsersRepo extends AbstractBaseRepo
 {
     public function __construct(Nette\Database\Connection $database)
@@ -28,7 +33,7 @@ class UsersRepo extends AbstractBaseRepo
      * @return string
      * @throws \ReflectionException
      */
-    protected function getTableName() {
+    protected function getTableName($tableName = null) {
         $result = str_ireplace('Repo', '',  (new \ReflectionClass($this))->getShortName());
         return 'ig_' . $result;
     }

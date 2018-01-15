@@ -19,7 +19,8 @@ class RecordsRepo extends AbstractBaseRepo
 
     public function loadList($userId) {
         $table = $this->getTableName();
-        $sql = "SELECT * FROM {$table} WHERE ";
+        $tableStock = $this->getTableName('stocks');
+        $sql = "SELECT a.*, a.amount * a.price as price_all, a.amount * b.price as price_all_now, b.price as price_now, b.code, b.name FROM {$table} a INNER JOIN {$tableStock} b ON a.stock_id = b.id WHERE ";
         $data = $this->database->query($sql, ['user_id' => $userId]);
         return $data;
     }

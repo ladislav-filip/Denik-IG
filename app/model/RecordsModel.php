@@ -31,9 +31,27 @@ class RecordsModel
         $this->recordsRepo = $recordsRepo;
     }
 
+    public function injectStockModel(\App\Model\StocksModel $stockModel) {
+        $this->stockModel = $stockModel;
+    }
+
     public function loadList()
     {
         $id = $this->user->getId();
         return $this->recordsRepo->loadList($id);
+    }
+
+    public function save($values)
+    {
+        if (empty($values['id'])) {
+            unset($values['id']);
+        }
+
+        $stock = $this->stockModel->getByCode($values['code']);
+        unset($values['code']);
+        $values['stock_id'] = $stock->id;
+        $values['user_id'] = $this->user->getId();
+
+        $this->recordsRepo->save($values);
     }
 }
