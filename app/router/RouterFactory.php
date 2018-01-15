@@ -22,6 +22,10 @@ class RouterFactory
         $admin[] = new Route('admin/[<locale=cs cs|en>/]<presenter>/<action>[/<id>]', 'Homepage:default');
         $router[] = $admin;
 
+        $private = new RouteList('Private');
+        $private[] = new Route('private/[<locale=cs cs|en>/]<presenter>/<action>[/<id>]', 'Homepage:default');
+        $router[] = $private;
+
         $public = new RouteList('Public');
         //$public[] = new Route('[<locale=cs cs|en>/]<presenter>/<action>[/<id>]', 'Homepage:default');
         $public[] = new Route('[<locale=cs cs|en>/]<presenter>/<action>/<id>', array(

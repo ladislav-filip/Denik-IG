@@ -34,7 +34,10 @@
                 </li>
                 {if $user->isLoggedIn()}
                     <li class="nav-item">
-                        <a class="nav-link" n:href=":Admin:Homepage:">{_messages.homepage.Administration}</a>
+                        <a class="nav-link" n:href=":Private:Homepage:">{_messages.menu.Private}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" n:href=":Admin:Homepage:">{_messages.menu.Administration}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" n:href="Sign:out">{_messages.sign.SignOut}</a>

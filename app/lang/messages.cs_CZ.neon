@@ -5,10 +5,12 @@ ig:
     Delete: "Odstranit"
     Refresh: "Aktualizovat"
     OK: "OK"
+menu:
+    Administration: "Administrace"
+    Private: "Soukromé"
 homepage:
 	helloWorld: "Ahoj světe!"
 	h1: "Investiční gramotnost - deník"
-	Administration: "Administrace"
 sign:
     Username: "Uživatelské jméno"
     Password: "Heslo"
