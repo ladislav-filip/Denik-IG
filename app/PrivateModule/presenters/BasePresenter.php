@@ -6,7 +6,16 @@
  * Time: 16:47
  */
 
-class BasePresenter
-{
+namespace App\PrivateModule\Presenters;
 
+use App\Core\AbstractBasePresenter;
+
+class BasePresenter extends AbstractBasePresenter
+{
+    protected function beforeRender() {
+        if (!$this->getUser()->loggedIn) {
+            $this->redirect(':Public:Sign:in');
+        }
+        parent::beforeRender();
+    }
 }

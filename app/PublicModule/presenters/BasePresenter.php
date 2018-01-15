@@ -2,18 +2,12 @@
 
 namespace App\PublicModule\Presenters;
 
-use Nette;
+use App\Core\AbstractBasePresenter;
 
 
 /**
  * Base presenter for all application presenters.
  */
-abstract class BasePresenter extends Nette\Application\UI\Presenter
+abstract class BasePresenter extends AbstractBasePresenter
 {
-    /** @persistent */
-    public $locale;
-
-    /** @var \Kdyby\Translation\Translator @inject */
-    public $translator;
-
 }

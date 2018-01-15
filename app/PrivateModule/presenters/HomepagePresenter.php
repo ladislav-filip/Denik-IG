@@ -6,7 +6,9 @@
  * Time: 16:48
  */
 
-class HomepagePresenter
+namespace App\PrivateModule\Presenters;
+
+class HomepagePresenter extends BasePresenter
 {
 
 }
