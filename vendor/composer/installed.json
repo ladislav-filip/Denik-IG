@@ -1072,22 +1072,22 @@
     },
     {
         "name": "nette/php-generator",
-        "version": "v2.6.3",
-        "version_normalized": "2.6.3.0",
+        "version": "v3.0.1",
+        "version_normalized": "3.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/nette/php-generator.git",
-            "reference": "78c898808d3a1018cc81f9d7108bc645129776c8"
+            "reference": "eb2dbc9c3409e9db40568109ca4994d51373b60c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nette/php-generator/zipball/78c898808d3a1018cc81f9d7108bc645129776c8",
-            "reference": "78c898808d3a1018cc81f9d7108bc645129776c8",
+            "url": "https://api.github.com/repos/nette/php-generator/zipball/eb2dbc9c3409e9db40568109ca4994d51373b60c",
+            "reference": "eb2dbc9c3409e9db40568109ca4994d51373b60c",
             "shasum": ""
         },
         "require": {
             "nette/utils": "^2.4.2 || ~3.0.0",
-            "php": ">=5.6.0"
+            "php": ">=7.0"
         },
         "conflict": {
             "nette/nette": "<2.2"
@@ -1096,11 +1096,11 @@
             "nette/tester": "^2.0",
             "tracy/tracy": "^2.3"
         },
-        "time": "2017-07-14T07:06:27+00:00",
+        "time": "2017-07-11T19:07:13+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "2.6-dev"
+                "dev-master": "3.0-dev"
             }
         },
         "installation-source": "dist",
@@ -1125,8 +1125,14 @@
                 "homepage": "https://nette.org/contributors"
             }
         ],
-        "description": "Nette PHP Generator",
-        "homepage": "https://nette.org"
+        "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 7.1 features.",
+        "homepage": "https://nette.org",
+        "keywords": [
+            "code",
+            "nette",
+            "php",
+            "scaffolding"
+        ]
     },
     {
         "name": "nette/reflection",
@@ -1580,17 +1586,17 @@
     },
     {
         "name": "symfony/config",
-        "version": "v3.4.2",
-        "version_normalized": "3.4.2.0",
+        "version": "v3.4.3",
+        "version_normalized": "3.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/config.git",
-            "reference": "e57211b88aa889fefac1cb36866db04100b0f21c"
+            "reference": "cfd5c972f7b4992a5df41673d25d980ab077aa5b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/config/zipball/e57211b88aa889fefac1cb36866db04100b0f21c",
-            "reference": "e57211b88aa889fefac1cb36866db04100b0f21c",
+            "url": "https://api.github.com/repos/symfony/config/zipball/cfd5c972f7b4992a5df41673d25d980ab077aa5b",
+            "reference": "cfd5c972f7b4992a5df41673d25d980ab077aa5b",
             "shasum": ""
         },
         "require": {
@@ -1609,7 +1615,7 @@
         "suggest": {
             "symfony/yaml": "To use the yaml reference dumper"
         },
-        "time": "2017-12-14T19:40:10+00:00",
+        "time": "2018-01-03T07:37:34+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1644,23 +1650,23 @@
     },
     {
         "name": "symfony/filesystem",
-        "version": "v3.4.2",
-        "version_normalized": "3.4.2.0",
+        "version": "v3.4.3",
+        "version_normalized": "3.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/filesystem.git",
-            "reference": "25b135bea251829e3db6a77d773643408b575ed4"
+            "reference": "e078773ad6354af38169faf31c21df0f18ace03d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/filesystem/zipball/25b135bea251829e3db6a77d773643408b575ed4",
-            "reference": "25b135bea251829e3db6a77d773643408b575ed4",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/e078773ad6354af38169faf31c21df0f18ace03d",
+            "reference": "e078773ad6354af38169faf31c21df0f18ace03d",
             "shasum": ""
         },
         "require": {
             "php": "^5.5.9|>=7.0.8"
         },
-        "time": "2017-12-14T19:40:10+00:00",
+        "time": "2018-01-03T07:37:34+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1756,17 +1762,17 @@
     },
     {
         "name": "symfony/translation",
-        "version": "v3.4.2",
-        "version_normalized": "3.4.2.0",
+        "version": "v3.4.3",
+        "version_normalized": "3.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/translation.git",
-            "reference": "4c5d5582baf2829751a5207659329c1f52eedeb6"
+            "reference": "17b5962d252b2d6d1d37a2485ebb7ddc5b2bef0a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/translation/zipball/4c5d5582baf2829751a5207659329c1f52eedeb6",
-            "reference": "4c5d5582baf2829751a5207659329c1f52eedeb6",
+            "url": "https://api.github.com/repos/symfony/translation/zipball/17b5962d252b2d6d1d37a2485ebb7ddc5b2bef0a",
+            "reference": "17b5962d252b2d6d1d37a2485ebb7ddc5b2bef0a",
             "shasum": ""
         },
         "require": {
@@ -1791,7 +1797,7 @@
             "symfony/config": "",
             "symfony/yaml": ""
         },
-        "time": "2017-12-12T08:27:14+00:00",
+        "time": "2018-01-03T07:37:34+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1826,17 +1832,17 @@
     },
     {
         "name": "tracy/tracy",
-        "version": "v2.4.9",
-        "version_normalized": "2.4.9.0",
+        "version": "v2.4.10",
+        "version_normalized": "2.4.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/nette/tracy.git",
-            "reference": "efe45da0aa3a50ce5356be39f2168d7925d94f3d"
+            "reference": "5b302790edd71924dfe4ec44f499ef61df3f53a2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nette/tracy/zipball/efe45da0aa3a50ce5356be39f2168d7925d94f3d",
-            "reference": "efe45da0aa3a50ce5356be39f2168d7925d94f3d",
+            "url": "https://api.github.com/repos/nette/tracy/zipball/5b302790edd71924dfe4ec44f499ef61df3f53a2",
+            "reference": "5b302790edd71924dfe4ec44f499ef61df3f53a2",
             "shasum": ""
         },
         "require": {
@@ -1851,7 +1857,7 @@
         "suggest": {
             "https://nette.org/donate": "Please support Tracy via a donation"
         },
-        "time": "2017-08-16T17:13:36+00:00",
+        "time": "2017-10-04T18:43:42+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {

@@ -35,6 +35,13 @@ class EvidencePresenter extends BasePresenter
         $this->recordId = $id;
     }
 
+    protected function beforeRender()
+    {
+        $this->template->addFilter('profit', function ($buy, $sale) {
+            return ($sale - $buy) / $sale * 100;
+        });
+    }
+
     protected function createComponentRecordEdit() {
         $data = is_null($this->recordId) ? null : $this->recordsModel->getById($this->recordId);
         return $this->recordFormFactory->create($data, function($values) {
