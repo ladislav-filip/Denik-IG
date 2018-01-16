@@ -23,4 +23,11 @@ class RecordsRepo extends AbstractBaseRepo
         $data = $this->database->query($sql, ['user_id' => $userId]);
         return $data;
     }
+
+    public function getById($id) {
+        $table = $this->getTableName('records_view');
+        $sql = "SELECT * FROM {$table} WHERE ";
+        $result = $this->database->fetch($sql, ['id' => $id]);
+        return $result;
+    }
 }

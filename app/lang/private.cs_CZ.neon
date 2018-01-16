@@ -2,6 +2,7 @@ homepage:
     h1: "Soukromá sekce - dashboard"
 evidence:
     h1: "Moje evidence"
+    h1_new: "Nové akcie"
     requiredCode: "Kód akcie je povinný"
     requiredAmount: "Množství akcií je povinné"
     requiredPrice: "Cena za akcii je povinná"

@@ -1,5 +1,6 @@
 ig:
     Stocks: "Akcie"
+    StockName: "Název akcie"
     Save: "Uložit"
     Cancel: "Storno"
     Delete: "Odstranit"

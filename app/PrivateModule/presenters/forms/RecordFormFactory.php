@@ -58,7 +58,9 @@ class RecordFormFactory
         if (!is_null($data)) {
             $form->setDefaults([
                 'id' => $data->id,
-                'code' => $data->code
+                'code' => $data->code,
+                'amount' => $data->amount,
+                'price' => $data->price
             ]);
         }
 

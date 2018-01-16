@@ -22,6 +22,8 @@ class EvidencePresenter extends BasePresenter
     /** @var RecordFormFactory */
     private $recordFormFactory;
 
+    private $detail;
+
     public function __construct(RecordFormFactory $recordFormFactory)
     {
         $this->recordFormFactory = $recordFormFactory;
@@ -31,8 +33,14 @@ class EvidencePresenter extends BasePresenter
         $this->template->data = $this->recordsModel->loadList();
     }
 
-    public function actionEdit($id = null) {
+    public function actionNew() {
+        $this->recordId = null;
+    }
+
+    public function actionEdit($id) {
         $this->recordId = $id;
+        $this->detail = $this->recordsModel->getById($this->recordId);
+        $this->template->detail = $this->detail;
     }
 
     protected function beforeRender()
@@ -43,7 +51,7 @@ class EvidencePresenter extends BasePresenter
     }
 
     protected function createComponentRecordEdit() {
-        $data = is_null($this->recordId) ? null : $this->recordsModel->getById($this->recordId);
+        $data = is_null($this->recordId) ? null : $this->detail;
         return $this->recordFormFactory->create($data, function($values) {
             $this->recordsModel->save($values);
             $this->redirect('Evidence:');

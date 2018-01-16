@@ -54,4 +54,10 @@ class RecordsModel
 
         $this->recordsRepo->save($values);
     }
+
+    public function getById($id)
+    {
+        $result = $this->recordsRepo->getById($id);
+        return $result;
+    }
 }
