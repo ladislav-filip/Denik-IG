@@ -18,6 +18,7 @@
             <th scope="col">{_messages.ig.Amount}</th>
             <th scope="col">{_messages.ig.PriceAll}</th>
             <th scope="col">{_messages.ig.PriceAllNow}</th>
+            <th scope="col">{_messages.ig.Profit}</th>
             <th scope="col">{_messages.ig.Created}</th>
             <th scope="col"> </th>
         </tr>
@@ -27,14 +28,14 @@
             <tr data-id="{$d->id}">
                 <th scope="row">{$d->code}</th>
                 <td class="text-left"><a data-edit="true" n:href="Evidence:edit $d->id">{$d->name}</a></td>
-                <td class="text-right">$<span data-price="true">{$d->price}</span></td>
-                <td class="text-right">$<span data-price="true">{$d->price_now}</span></td>
+                <td class="text-right"><span data-price="true">{$d->price |number:2}</span> $</td>
+                <td class="text-right"><span data-price="true">{$d->price_now |number:2}</span> $</td>
                 <td class="text-right"><span data-amount="true">{$d->amount} ks</span></td>
-                <td class="text-right">$<span>{$d->price_all}</span></td>
-                <td class="text-right">$<span>{$d->price_all_now}</span></td>
+                <td class="text-right"><span>{$d->price_all |number:2}</span> $</td>
+                <td class="text-right"><span>{$d->price_all_now |number:2}</span> $</td>
+                <td class="text-right"><span>{$d->profit |number:2}</span> $</td>
                 <td data-updated="true">{$d->created|date:'%d.%m.%Y'}</td>
                 <td>
-                    <a data-refresh="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Refresh}" class="fa fa-calculator"></i></a>
                     <a data-remove="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Delete}" class="fa fa-eraser text-danger"></i></a>
                 </td>
             </tr>

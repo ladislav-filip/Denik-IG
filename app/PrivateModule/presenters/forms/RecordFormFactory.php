@@ -8,6 +8,7 @@
 
 namespace App\PrivateModule\Presenters\forms;
 
+use Nette\Application\UI\Form;
 use App\Forms\FormFactory;
 
 class RecordFormFactory
@@ -30,13 +31,17 @@ class RecordFormFactory
         $form->addHidden('id');
 
         $form->addText('code', $this->translate('StockCode', 'messages.ig'))
-            ->setRequired($this->translate("requiredCode"));
+            ->setRequired($this->translate("requiredCode"))
+            ->addRule($form::PATTERN, $this->translate('StockCodeRule', 'admin.stocks'), '[A-Za-z0-9]{1,10}');
 
         $form->addText('amount', $this->translate('Amount', 'messages.ig'))
-            ->setRequired($this->translate('requiredAmount'));
+            ->setRequired($this->translate('requiredAmount'))
+            ->addRule(Form::INTEGER, $this->translate('ValueMustNumber', 'messages.ig'))
+            ->addRule(Form::RANGE, $this->translate('StockAmountRange', 'admin.stocks'), array(1,99999));
 
-        $form->addText('price', $this->translate('Price', 'messages.ig'))
-            ->setRequired($this->translate('requiredPrice'));
+        $form->addText('price', $this->translate('PricePerPiece', 'messages.ig'))
+            ->setRequired($this->translate('requiredPrice'))
+            ->addRule(Form::FLOAT, $this->translate('ValueMustNumber', 'messages.ig'));
 
         $form->addSubmit('send', $this->translate('Save', 'messages.ig'));
 

@@ -24,6 +24,11 @@ database:
 
 
 services:
+	nette.latteFactory:
+		setup:
+			- addFilter(profit, @App\Core\Latte\ProfitFilter)
+
+	profitFilter: App\Core\Latte\ProfitFilter
 	usersRepo: App\DAL\UsersRepo
 	settingsRepo: App\DAL\SettingsRepo
 	stocksRepo: App\DAL\StocksRepo

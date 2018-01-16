@@ -13,6 +13,11 @@ ig:
     PriceAll: "Cena celkem"
     PriceNow: "Cena teď"
     PriceAllNow: "Cena celkem teď"
+    pcs: ks
+    piece: kus
+    PricePerPiece: "Cena za kus"
+    ValueMustNumber: "Hodnota musí být číslo"
+    Profit: "Zisk"
 menu:
     Administration: "Administrace"
     Private: "Soukromé"

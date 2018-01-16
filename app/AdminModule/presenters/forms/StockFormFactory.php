@@ -31,7 +31,8 @@ class StockFormFactory
         $form->addHidden('id');
 
         $form->addText('code', $this->translate('code'))
-            ->setRequired($this->translate("requiredCode"));
+            ->setRequired($this->translate("requiredCode"))
+            ->addRule($form::PATTERN, $this->translate('StockCodeRule', 'admin.stocks'), '[A-Za-z0-9]{1,10}');
 
         $form->addText('name', $this->translate('name'))
             ->setRequired($this->translate("requiredName"));
