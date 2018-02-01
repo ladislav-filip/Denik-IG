@@ -37,3 +37,5 @@ sign:
     errorUsernameOrPassword: "Chybné uživatelské jméno nebo heslo"
     infoSignOut: "Byli jste odhlášeni"
     infoSignAnother: "Přihlaste se k jinému účtu"
+error:
+    stockCodeNotFound: "Akcie s tímto kódem nebyla nalezena."

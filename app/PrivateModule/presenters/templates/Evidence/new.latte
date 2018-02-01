@@ -3,3 +3,15 @@
 <h1>{_private.evidence.h1_new}</h1>
 
 {control recordEdit}
+
+{/block}
+
+{block scripts}
+    {include parent}
+
+    <script src="{$basePath}/js/app/private/evidence/edit.js"></script>
+    <script type="text/javascript">
+        new EditEvidence({link suggestStock!});
+    </script>
+
+{/block}

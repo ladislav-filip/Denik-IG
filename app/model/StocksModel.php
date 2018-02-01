@@ -41,8 +41,13 @@ class StocksModel
         }
         $code = $values['code'];
         $data = $this->alphaVantage->getBatchStockQuotes([$code]);
-        $values['price'] = $this->getPrice($data, $code);
-        $this->stocksRepo->save($values);
+        if (count($data)) {
+            $values['price'] = $this->getPrice($data, $code);
+            if (empty($values['name'])) $values['name'] = $code;
+            $id = $this->stocksRepo->save($values);
+            return $id;
+        }
+        return false;
     }
 
     public function updatePricesAll() {

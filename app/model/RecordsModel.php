@@ -9,9 +9,10 @@
 namespace App\Model;
 
 
+use App\Core\UIException;
 use App\DAL\RecordsRepo;
 
-class RecordsModel
+class RecordsModel extends AbstractModel
 {
 
     /** @var \App\Model\StocksModel */
@@ -19,13 +20,6 @@ class RecordsModel
 
     /** @var \App\DAl\RecordsRepo */
     private $recordsRepo;
-
-    /** @var \Nette\Security\User */
-    private $user;
-
-    public function injectUser(\Nette\Security\User $user) {
-        $this->user = $user;
-    }
 
     public function injectRecordsRepo(RecordsRepo $recordsRepo) {
         $this->recordsRepo = $recordsRepo;
@@ -37,20 +31,30 @@ class RecordsModel
 
     public function loadList()
     {
-        $id = $this->user->getId();
+        $id = $this->getUser()->getId();
         return $this->recordsRepo->loadList($id);
     }
 
     public function save($values)
     {
+        $stock_id = $values['stock_id'];
         if (empty($values['id'])) {
             unset($values['id']);
+
+            if (!empty($stock_id)) {
+                $stock = $this->stockModel->getById($stock_id);
+            }
+            else {
+                $stock_data = array('code' => $values['code'], 'name' => $values['stock_name']);
+                $stock_id = $this->stockModel->save($stock_data);
+                if ($stock_id === false) throw new UIException($this->translate('stockCodeNotFound', 'messages.error'));
+            }
         }
 
-        $stock = $this->stockModel->getByCode($values['code']);
         unset($values['code']);
-        $values['stock_id'] = $stock->id;
-        $values['user_id'] = $this->user->getId();
+        unset($values['stock_name']);
+        $values['stock_id'] = $stock_id;
+        $values['user_id'] = $this->getUser()->getId();
 
         $this->recordsRepo->save($values);
     }

@@ -29,19 +29,29 @@ class RecordFormFactory
         $form = $this->factory->create();
 
         $form->addHidden('id');
+        $form->addHidden('stock_id');
 
-        $form->addText('code', $this->translate('StockCode', 'messages.ig'))
+        $el = $form->addText('code', $this->translate('StockCode', 'messages.ig'))
+            ->setAttribute('class', 'typehead')
+            ->setAttribute('maxlength', 10)
             ->setRequired($this->translate("requiredCode"))
             ->addRule($form::PATTERN, $this->translate('StockCodeRule', 'admin.stocks'), '[A-Za-z0-9]{1,10}');
+        if (!is_null($data)) $el->setAttribute('readonly', 'readonly');
+
+        $el = $form->addText('stock_name', $this->translate('StockName', 'messages.ig'))
+            ->setAttribute('maxlength', 150);
+        if (!is_null($data)) $el->setAttribute('readonly', 'readonly');
 
         $form->addText('amount', $this->translate('Amount', 'messages.ig'))
             ->setRequired($this->translate('requiredAmount'))
             ->addRule(Form::INTEGER, $this->translate('ValueMustNumber', 'messages.ig'))
-            ->addRule(Form::RANGE, $this->translate('StockAmountRange', 'admin.stocks'), array(1,99999));
+            ->addRule(Form::RANGE, $this->translate('StockAmountRange', 'admin.stocks'), array(1,99999))
+            ->setAttribute('maxlength', 10);
 
         $form->addText('price', $this->translate('PricePerPiece', 'messages.ig'))
             ->setRequired($this->translate('requiredPrice'))
-            ->addRule(Form::FLOAT, $this->translate('ValueMustNumber', 'messages.ig'));
+            ->addRule(Form::FLOAT, $this->translate('ValueMustNumber', 'messages.ig'))
+            ->setAttribute('maxlength', 10);
 
         $form->addSubmit('send', $this->translate('Save', 'messages.ig'));
 
@@ -52,15 +62,17 @@ class RecordFormFactory
             $values = $form->getValues(true);
             unset($values['cancel']);
             $values['code'] = strtoupper($values['code']);
-            $onSuccess($values);
+            $onSuccess($values, $form);
         };
 
         if (!is_null($data)) {
             $form->setDefaults([
                 'id' => $data->id,
+                'stock_id' => $data->stock_id,
                 'code' => $data->code,
                 'amount' => $data->amount,
-                'price' => $data->price
+                'price' => $data->price,
+                'stock_name' => $data->name
             ]);
         }
 
