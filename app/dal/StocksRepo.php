@@ -8,6 +8,7 @@
 
 namespace App\DAL;
 
+use App\DAL\Filters\StockFilter;
 use Nette;
 
 class StocksRepo extends AbstractBaseRepo
@@ -17,10 +18,21 @@ class StocksRepo extends AbstractBaseRepo
         parent::__construct($database);
     }
 
-    public function loadList() {
+    public function loadList(StockFilter $filter = null) {
         $table = $this->getTableName();
-        $sql = "SELECT * FROM {$table}";
-        $data = $this->database->query($sql);
+        $sql = "SELECT * FROM {$table} ";
+
+        $arr = array('WHERE 1 = 1 ');
+        $prm = array();
+        if (!empty($filter->fulltext)) {
+            $arr[] = ' (name like ? OR code like ?)';
+            $prm[] = "%{$filter->fulltext}%";
+            $prm[] = "%{$filter->fulltext}";
+        }
+
+        $sql .= implode(' AND ', $arr);
+
+        $data = $this->database->queryArgs($sql, $prm);
         return $data;
     }
 

@@ -9,6 +9,7 @@
 namespace App\Model;
 
 
+use App\DAL\Filters\StockFilter;
 use App\DAL\StocksRepo;
 
 class StocksModel
@@ -30,8 +31,8 @@ class StocksModel
         $this->alphaVantage = $alphaVantage;
     }
 
-    public function loadList() {
-        return $this->stocksRepo->loadList();
+    public function loadList(StockFilter $filter = null) {
+        return $this->stocksRepo->loadList($filter);
     }
 
     public function save($values)

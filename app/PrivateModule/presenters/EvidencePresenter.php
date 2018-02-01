@@ -10,6 +10,7 @@ namespace App\PrivateModule\Presenters;
 
 
 use App\Core\UIException;
+use App\DAL\Filters\StockFilter;
 use App\PrivateModule\Presenters\forms\RecordFormFactory;
 
 class EvidencePresenter extends BasePresenter
@@ -48,7 +49,9 @@ class EvidencePresenter extends BasePresenter
     }
 
     public function handleSuggestStock($term) {
-        $data = $this->stockModel->loadList();
+        $filter = new StockFilter();
+        $filter->fulltext = $term;
+        $data = $this->stockModel->loadList($filter);
         $result = array();
         foreach ($data as $d) {
             $itm = new \stdClass();
