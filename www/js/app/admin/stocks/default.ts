@@ -48,10 +48,15 @@ class Stock {
     }
 
     deleteSaveClick(e: any): void {
+        $("#dlgDelete").modal('hide');
         $.post(this.urlDelete, {idx: this.stockId}).done((payload) => {
-            this.$tr.remove();
-            this.$tr = null;
-            $("#dlgDelete").modal('hide');
+            if (payload.error) {
+                alert(payload.error);
+            }
+            else {
+                this.$tr.remove();
+                this.$tr = null;
+            }
         });
     }
 

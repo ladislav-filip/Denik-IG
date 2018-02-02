@@ -43,4 +43,17 @@ class StocksRepo extends AbstractBaseRepo
         $data = $this->database->fetch($sql, ['code' => $code]);
         return $data;
     }
+
+    /**
+     * Kontrola zda je daná akcie již někde použita, např. v deníku
+     * @param $id
+     * @return bool
+     * @throws \ReflectionException
+     */
+    public function isStockUsed($id) {
+        $tblRec = $this->getTableName('records');
+        $sql = "SELECT count(*) as pocet FROM {$tblRec} WHERE ";
+        $data = $this->database->fetchField($sql, ['stock_id' => $id]);
+        return $data > 0;
+    }
 }

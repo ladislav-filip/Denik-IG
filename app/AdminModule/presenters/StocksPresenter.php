@@ -10,6 +10,7 @@ namespace App\AdminModule\Presenters;
 
 
 use App\AdminModule\Presenters\forms\StockFormFactory;
+use App\Core\UIException;
 
 class StocksPresenter extends BasePresenter
 {
@@ -48,7 +49,12 @@ class StocksPresenter extends BasePresenter
     }
 
     public function handleStockDelete($idx) {
-        $this->stockModel->delete($idx);
+        try {
+            $this->stockModel->delete($idx);
+        }
+        catch (UIException $e) {
+            $this->payload->error = $e->getMessage();
+        }
         $this->sendPayload();
     }
 

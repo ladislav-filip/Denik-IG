@@ -35,10 +35,15 @@ var Stock = /** @class */ (function () {
     };
     Stock.prototype.deleteSaveClick = function (e) {
         var _this = this;
+        $("#dlgDelete").modal('hide');
         $.post(this.urlDelete, { idx: this.stockId }).done(function (payload) {
-            _this.$tr.remove();
-            _this.$tr = null;
-            $("#dlgDelete").modal('hide');
+            if (payload.error) {
+                alert(payload.error);
+            }
+            else {
+                _this.$tr.remove();
+                _this.$tr = null;
+            }
         });
     };
     return Stock;
