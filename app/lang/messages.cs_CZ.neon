@@ -39,3 +39,4 @@ sign:
     infoSignAnother: "Přihlaste se k jinému účtu"
 error:
     stockCodeNotFound: "Akcie s tímto kódem nebyla nalezena."
+    stockNoDeleteIsUsed: "Tuto akcii nelze odstranit, protože je již použita (např. v uživatelském deníku)."

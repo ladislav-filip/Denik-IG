@@ -13,9 +13,8 @@ use App\Core\UIException;
 use App\DAL\Filters\StockFilter;
 use App\DAL\StocksRepo;
 
-class StocksModel
+class StocksModel extends AbstractModel
 {
-
     /**
      * @var StocksRepo
      */
@@ -92,7 +91,7 @@ class StocksModel
 
     public function delete($id)
     {
-        if ($this->stocksRepo->isStockUsed($id)) throw new UIException("Tuto akcii nelze odstranit, protože je již použita (např. v uživatelském deníku).");
+        if ($this->stocksRepo->isStockUsed($id)) throw new UIException($this->translate('stockNoDeleteIsUsed', 'messages.error'));
         $this->stocksRepo->deleteById($id);
     }
 
