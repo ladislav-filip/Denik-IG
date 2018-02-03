@@ -21,7 +21,8 @@ class CronPresenter extends AbstractBasePresenter
 
     public function actionStockRefresh() {
         $httpRequest = $this->getHttpRequest();
-        $arr = array('::1', '127.0.0.1');
+        // povolené IP adresy odkud je možné spustit úlohu
+        $arr = array('::1', '127.0.0.1', '89.185.244.168');
         if (in_array($httpRequest->getRemoteAddress(), $arr)) {
             $filter = new StockFilter();
             // 10 minut
