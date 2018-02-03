@@ -51,8 +51,7 @@ class StocksModel extends AbstractModel
         return false;
     }
 
-    public function updatePricesAll(StockFilter $filter = null) {
-        $result = 0;
+    private function loadPrices(StockFilter $filter = null) {
         $data = $this->stocksRepo->loadList($filter);
         $arr = [];
         $values = [];
@@ -66,14 +65,29 @@ class StocksModel extends AbstractModel
                 'updated' => null
             ];
         }
-        $prices = $this->alphaVantage->getBatchStockQuotes($arr);
 
-        foreach ($values as $d) {
-            $d['price'] = $this->getPrice($prices, $d['code']);
-            $d['refresh_type'] = $d['price'] === -1 ? \StockRefreshTypes::None : \StockRefreshTypes::Auto;
-            $this->stocksRepo->save($d);
-            $result++;
+        if (count($values) > 0) {
+            $result = new \stdClass();
+            $result->codes = $arr;
+            $result->values = $values;
+            $result->prices = $this->alphaVantage->getBatchStockQuotes($arr);
+            return $result;
         }
+        return false;
+    }
+
+    public function updatePricesAll(StockFilter $filter = null) {
+        $result = 0;
+
+        while ($data = $this->loadPrices($filter)) {
+            foreach ($data->values as $d) {
+                $d['price'] = $this->getPrice($data->prices, $d['code']);
+                $d['refresh_type'] = $d['price'] === -1 ? \StockRefreshTypes::None : \StockRefreshTypes::Auto;
+                $this->stocksRepo->save($d);
+                $result++;
+            }
+        }
+
         return $result;
     }
 

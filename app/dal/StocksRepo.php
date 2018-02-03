@@ -42,6 +42,10 @@ class StocksRepo extends AbstractBaseRepo
 
         $sql .= implode(' AND ', $arr);
 
+        if (isset($filter->limit) && intval($filter->limit) > 0) {
+            $sql .= ' LIMIT ' . intval($filter->limit);
+        }
+
         $data = $this->database->queryArgs($sql, $prm);
         return $data;
     }

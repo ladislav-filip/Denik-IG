@@ -11,6 +11,8 @@ namespace App\AdminModule\Presenters;
 
 use App\AdminModule\Presenters\forms\StockFormFactory;
 use App\Core\UIException;
+use App\DAL\Filters\StockFilter;
+use Nette\Utils\DateTime;
 
 class StocksPresenter extends BasePresenter
 {
@@ -41,7 +43,15 @@ class StocksPresenter extends BasePresenter
     }
 
     public function actionStocksRefresh() {
-        $this->stockModel->updatePricesAll();
+        $filter = new StockFilter();
+        // 1 minuta
+        $filter->toLastUpdated = DateTime::from(-60);
+        // pouze automatické aktualizace
+        $filter->stockRefreshType = \StockRefreshTypes::Auto;
+        // aktualizovat po 50 záznamech
+        $filter->limit = 50;
+
+        $this->stockModel->updatePricesAll($filter);
         $this->redirect('Stocks:');
     }
 

@@ -29,6 +29,9 @@ class CronPresenter extends AbstractBasePresenter
             $filter->toLastUpdated = DateTime::from(-600);
             // pouze automatické aktualizace
             $filter->stockRefreshType = \StockRefreshTypes::Auto;
+            // aktualizovat po 50 záznamech
+            $filter->limit = 50;
+
             $count = $this->stockModel->updatePricesAll($filter);
             $this->payload->status = "ok";
             $this->payload->count = $count;

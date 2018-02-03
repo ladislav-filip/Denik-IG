@@ -11,6 +11,12 @@ namespace App\DAL\Filters;
 class StockFilter
 {
     /**
+     * Počet záznamů, který se má načíst
+     * @var int
+     */
+    public $limit;
+
+    /**
      * Vyhledává v obsahu názvu a podle počátku v kódu
      * @var string
      */
