@@ -8,12 +8,15 @@ ig:
     OK: "OK"
     AppName: "IG - Deník"
     Amount: "Množství"
+    AmountPieces: "Počet kusů"
     Price: "Cena"
     StockCode: "Kód akcie"
     Created: "Vytvořeno"
     PriceAll: "Cena celkem"
-    PriceNow: "Cena teď"
+    PriceNow: "Aktuální cena"
     PriceAllNow: "Cena celkem teď"
+    PricePurchase: "Nákupní cena"
+    PriceMarket: "Tržní cena"
     pcs: ks
     piece: kus
     PricePerPiece: "Cena za kus"
