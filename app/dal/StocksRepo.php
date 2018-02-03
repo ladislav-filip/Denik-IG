@@ -41,6 +41,7 @@ class StocksRepo extends AbstractBaseRepo
         }
 
         $sql .= implode(' AND ', $arr);
+        $sql .= ' ORDER BY code';
 
         if (isset($filter->limit) && intval($filter->limit) > 0) {
             $sql .= ' LIMIT ' . intval($filter->limit);
