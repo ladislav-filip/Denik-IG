@@ -17,6 +17,7 @@
                 <th scope="col">{_admin.stocks.name}</th>
                 <th scope="col">{_admin.stocks.price}</th>
                 <th scope="col">{_admin.stocks.updated}</th>
+                <th scope="col">{_admin.stocks.Refresh_type_col}</th>
                 <th scope="col"> </th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 <td class="text-left"><a data-edit="true" n:href="Stocks:edit $d->id">{$d->name}</a></td>
                 <td class="text-right">$<span data-price="true">{$d->price}</span></td>
                 <td data-updated="true">{$d->updated|date:'%d.%m.%Y'} {$d->updated|date:'H:i'}</td>
+                <td scope="row">{$refreshTypesText[$d->refresh_type]}</td>
                 <td>
                     <a data-refresh="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Refresh}" class="fa fa-calculator"></i></a>
                     <a data-remove="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Delete}" class="fa fa-eraser text-danger"></i></a>

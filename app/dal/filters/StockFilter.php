@@ -10,5 +10,21 @@ namespace App\DAL\Filters;
 
 class StockFilter
 {
+    /**
+     * Vyhledává v obsahu názvu a podle počátku v kódu
+     * @var string
+     */
     public $fulltext;
+
+    /**
+     * Výběr všeho co bylo aktualizováno před tímto datem/časem
+     * @var \Nette\Utils\DateTime
+     */
+    public $toLastUpdated;
+
+    /**
+     * Typ aktualuzace podle které se bude hledat
+     * @var int
+     */
+    public $stockRefreshType;
 }

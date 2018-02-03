@@ -19,6 +19,9 @@ ig:
     PricePerPiece: "Cena za kus"
     ValueMustNumber: "Hodnota musí být číslo"
     Profit: "Zisk"
+    Yes: "Ano"
+    No: "Ne"
+    Manual: "Ručně"
 menu:
     Administration: "Administrace"
     Private: "Soukromé"

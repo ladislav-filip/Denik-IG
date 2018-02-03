@@ -18,17 +18,26 @@ class AlphaVantage
     }
 
     public function getBatchStockQuotes($symbols = array()) {
-        $querySymbols = implode(',', $symbols);
-        $query = "?function=BATCH_STOCK_QUOTES&symbols={$querySymbols}&apikey=" . $this->getApiKey();
-        $url = self::URL . $query;
-        $json = file_get_contents($url);
-        $obj = json_decode($json, true);
-
         $result = [];
-        $stocks = $obj['Stock Quotes'];
-        if (count($stocks) > 0) {
-            foreach ($stocks as $d) {
-                $result[$d['1. symbol']] = floatval($d['2. price']);
+
+        if (count($symbols) > 0) {
+            $querySymbols = urlencode(implode(',', $symbols));
+            $query = "?function=BATCH_STOCK_QUOTES&symbols={$querySymbols}&apikey=" . $this->getApiKey();
+            $url = self::URL . $query;
+            $json = file_get_contents($url);
+            $obj = json_decode($json, true);
+
+            if (isset($obj['Error Message'])) {
+                throw new \Exception($obj['Error Message']);
+            }
+            if (!isset($obj['Stock Quotes'])) {
+                throw new \Exception('Stock Quotes not found');
+            }
+            $stocks = $obj['Stock Quotes'];
+            if (count($stocks) > 0) {
+                foreach ($stocks as $d) {
+                    $result[$d['1. symbol']] = floatval($d['2. price']);
+                }
             }
         }
         return $result;

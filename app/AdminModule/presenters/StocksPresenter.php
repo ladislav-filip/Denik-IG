@@ -29,6 +29,10 @@ class StocksPresenter extends BasePresenter
     }
 
     public function renderDefault() {
+        $this->template->refreshTypesText = array(
+            \StockRefreshTypes::Auto => $this->translator->translate('messages.ig.Yes'),
+            \StockRefreshTypes::None => $this->translator->translate('messages.ig.No'),
+            \StockRefreshTypes::Manual => $this->translator->translate('messages.ig.Manual'));
         $this->template->data = $this->stockModel->loadList();
     }
 

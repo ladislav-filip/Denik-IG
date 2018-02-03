@@ -51,8 +51,9 @@ class StocksModel extends AbstractModel
         return false;
     }
 
-    public function updatePricesAll() {
-        $data = $this->stocksRepo->loadList();
+    public function updatePricesAll(StockFilter $filter = null) {
+        $result = 0;
+        $data = $this->stocksRepo->loadList($filter);
         $arr = [];
         $values = [];
         foreach ($data as $d) {
@@ -61,6 +62,7 @@ class StocksModel extends AbstractModel
                 'id' => $d->id,
                 'code' => $d->code,
                 'price' => null,
+                'refresh_type' => null,
                 'updated' => null
             ];
         }
@@ -68,8 +70,11 @@ class StocksModel extends AbstractModel
 
         foreach ($values as $d) {
             $d['price'] = $this->getPrice($prices, $d['code']);
+            $d['refresh_type'] = $d['price'] === -1 ? \StockRefreshTypes::None : \StockRefreshTypes::Auto;
             $this->stocksRepo->save($d);
+            $result++;
         }
+        return $result;
     }
 
     public function updatePrice($id) {
@@ -81,6 +86,7 @@ class StocksModel extends AbstractModel
             'id' => $id,
             'code' => $code,
             'price' => $price,
+            'refresh_type' => $price === -1 ? \StockRefreshTypes::None : \StockRefreshTypes::Auto,
             'updated' => null
         ];
         $this->stocksRepo->save($values);

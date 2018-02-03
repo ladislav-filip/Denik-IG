@@ -24,10 +24,20 @@ class StocksRepo extends AbstractBaseRepo
 
         $arr = array('WHERE 1 = 1 ');
         $prm = array();
+
         if (!empty($filter->fulltext)) {
             $arr[] = ' (name like ? OR code like ?)';
             $prm[] = "%{$filter->fulltext}%";
             $prm[] = "%{$filter->fulltext}";
+        }
+
+        if (!empty($filter->toLastUpdated)) {
+            $arr[] = ' updated < ? ';
+            $prm[] = $filter->toLastUpdated;
+        }
+
+        if (isset($filter->stockRefreshType) && \StockRefreshTypes::IsEnum($filter->stockRefreshType) ) {
+            $arr[] = "refresh_type = {$filter->stockRefreshType}";
         }
 
         $sql .= implode(' AND ', $arr);

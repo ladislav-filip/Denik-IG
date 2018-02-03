@@ -9,3 +9,4 @@ stocks:
     DeleteQuestion: "Opravdu si přejete odstranit tuto akcii?"
     StockCodeRule: "Kód akcie můžou být pouze čísla a písmena bez diakritiky o délce max. 10 znaků"
     StockAmountRange: "Množství musí být v rozsahu 1 až 99 999"
+    Refresh_type_col: "Aktualizovat"
