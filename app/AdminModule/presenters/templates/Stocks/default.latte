@@ -1,49 +1,59 @@
 {block content}
 
-    <h1>{_messages.ig.Stocks}</h1>
 
-    <div class="row">
-        <div class="col-md-6 text-left">
-            <a n:href="Stocks:edit" class="btn btn-primary">Nova</a>
-            <a n:href="Stocks:stocksRefresh" class="btn btn-secondary">Aktualizovat</a>
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">{_messages.ig.Stocks}</strong>
+            </div>
+            <div class="card-body">
+                <div class="card-header">
+                    <a n:href="Stocks:edit" class="btn btn-primary">Nova</a>
+                    <a n:href="Stocks:stocksRefresh" class="btn btn-secondary">Aktualizovat</a>
+                </div>
+                <table id="table" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">{_admin.stocks.code}</th>
+                        <th scope="col">{_admin.stocks.name}</th>
+                        <th scope="col">{_admin.stocks.price}</th>
+                        <th scope="col">{_admin.stocks.updated}</th>
+                        <th scope="col">{_admin.stocks.Refresh_type_col}</th>
+                        <th scope="col"> </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach $data as $d}
+                        <tr data-id="{$d->id}">
+                            <th scope="row">{$d->code}</th>
+                            <td class="text-left"><a data-edit="true" n:href="Stocks:edit $d->id">{$d->name}</a></td>
+                            <td class="text-right">$<span data-price="true">{$d->price}</span></td>
+                            <td data-updated="true">{$d->updated|date:'%d.%m.%Y'} {$d->updated|date:'H:i'}</td>
+                            <td scope="row">{$refreshTypesText[$d->refresh_type]}</td>
+                            <td>
+                                <a data-refresh="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Refresh}" class="fa fa-calculator"></i></a>
+                                <a data-remove="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Delete}" class="fa fa-eraser text-danger"></i></a>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
 
-    <table id="table" class="table table-sm table-striped">
-        <thead>
-            <tr>
-                <th scope="col">{_admin.stocks.code}</th>
-                <th scope="col">{_admin.stocks.name}</th>
-                <th scope="col">{_admin.stocks.price}</th>
-                <th scope="col">{_admin.stocks.updated}</th>
-                <th scope="col">{_admin.stocks.Refresh_type_col}</th>
-                <th scope="col"> </th>
-            </tr>
-        </thead>
-        <tbody>
-        {foreach $data as $d}
-            <tr data-id="{$d->id}">
-                <th scope="row">{$d->code}</th>
-                <td class="text-left"><a data-edit="true" n:href="Stocks:edit $d->id">{$d->name}</a></td>
-                <td class="text-right">$<span data-price="true">{$d->price}</span></td>
-                <td data-updated="true">{$d->updated|date:'%d.%m.%Y'} {$d->updated|date:'H:i'}</td>
-                <td scope="row">{$refreshTypesText[$d->refresh_type]}</td>
-                <td>
-                    <a data-refresh="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Refresh}" class="fa fa-calculator"></i></a>
-                    <a data-remove="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Delete}" class="fa fa-eraser text-danger"></i></a>
-                </td>
-            </tr>
-        {/foreach}
-        </tbody>
-    </table>
+{/block}
 
+{block scripts}
 
-    <div id="dlgDelete" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="dlgDelete" tabindex="-1" role="dialog" aria-labelledby="dlgDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{_messages.ig.Delete}</h5>
+                    <h5 class="modal-title" id="dlgDeleteLabel">{_messages.ig.Delete}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -60,9 +70,6 @@
     </div>
 
 
-{/block}
-
-{block scripts}
     {include parent}
 
     <script src="{$basePath}/js/app/admin/stocks/default.js"></script>

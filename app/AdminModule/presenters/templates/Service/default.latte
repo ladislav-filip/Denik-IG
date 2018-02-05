@@ -1,14 +1,31 @@
 {block content}
 
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header"><strong>Servis</strong><small> konfigurace</small></div>
+            <div class="card-body card-block">
+                <div class="form-group">{$data}</div>
+                <div class="form-group">{$dbname}</div>
+                <div class="form-group">{$tempDir}</div>
+            </div>
+            <div class="card-footer">
+                <a n:href="Service:refreshCache" class="btn btn-info">Obnovit cache</a>
+                <a n:href="Service:upgradeDb" class="btn btn-danger">Aktualizovat databázi</a>
+            </div>
+        </div>
+    </div>
+
+
+    {*
     <h1>Service</h1>
     <p>{$data}</p>
     <p>{$dbname}</p>
     <p>{$tempDir}</p>
 
     <p style="white-space: pre">
-        <a n:href="Service:refreshCache">Obnovit cache</a>
-        <a n:href="Service:upgradeDb">Aktualizovat databázi</a>
+
     </p>
+    *}
 {/block}
 
 {block scripts}

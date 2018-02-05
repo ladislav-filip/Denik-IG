@@ -9,9 +9,7 @@
             </div>
             <div class="card-body">
                 <div class="card-header">
-
-                        <a n:href="Evidence:new" class="btn btn-primary">Nova</a>
-
+                    <a n:href="Evidence:new" class="btn btn-primary">Nova</a>
                 </div>
                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                     <thead>
@@ -56,6 +54,27 @@
 {/block}
 
 {block scripts}
+
+    <div class="modal fade" id="dlgDelete" tabindex="-1" role="dialog" aria-labelledby="dlgDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dlgDeleteLabel">{_messages.ig.Delete}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>????</p>
+                </div>
+                <div class="modal-footer">
+                    <button data-save="true" type="button" class="btn btn-primary">{_messages.ig.OK}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{_messages.ig.Cancel}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {include parent}
 
 {/block}
