@@ -1,7 +1,51 @@
 {block content}
+{*
 <h1 n:block=title>{_messages.sign.SignIn}</h1>
+*}
+{*control signInForm*}
 
-{control signInForm}
+<div class="sufee-login d-flex align-content-center flex-wrap">
+    <div class="container">
+        <div class="login-content">
+            <div class="login-logo">
+                <a n:href="Homepage:">
+                    <div>IG</div>
+                </a>
+
+            </div>
+            <div class="login-form">
+                <form n:name=signInForm >
+
+                    <div class="form-group" n:if="$form->hasErrors()">
+                        <div class="text-danger" n:foreach="$form->errors as $error">{$error}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label n:name="username">{_messages.sign.Username}</label>
+                        <input n:name="username" type="text" class="form-control" placeholder="{_messages.sign.Username}">
+                    </div>
+                    <div class="form-group">
+                        <label n:name="password">{_messages.sign.Password}</label>
+                        <input n:name="password" type="password" class="form-control" placeholder="{_messages.sign.Username}">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input n:name="remember" type="checkbox"> {_messages.sign.KeepSignIn}
+                        </label>
+                        {*<label class="pull-right">
+                            <a href="#">Forgotten Password?</a>
+                        </label>*}
+
+                    </div>
+                    <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">{_messages.sign.SignIn}</button>
+                    <div class="register-link m-t-15 text-center">
+                        <p>{_messages.sign.DontHaveAccount} <a n:href="Sign:up"> {_messages.sign.Register}</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 {* OR
 {import '../components/form.latte'}

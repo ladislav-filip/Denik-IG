@@ -29,7 +29,7 @@ class SignPresenter extends BasePresenter
 	protected function createComponentSignInForm()
 	{
 		return $this->signInFactory->create(function () {
-			$this->redirect('Homepage:');
+			$this->redirect(':Private:Homepage:');
 		});
 	}
 

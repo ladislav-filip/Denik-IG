@@ -1,6 +1,33 @@
 {block content}
-<h1 n:block=title>Sign Up</h1>
 
-{control signUpForm}
+<div class="sufee-login d-flex align-content-center flex-wrap">
+    <div class="container">
+        <div class="login-content">
+            <div class="login-logo">
+                <a n:href="Homepage:">
+                    <div>IG - {_messages.sign.Register}</div>
+                </a>
+            </div>
+            <div class="login-form">
+                <form n:name=signUpForm >
 
-<p><a n:href="in">Already have an account? Log in.</a></p>
+                    <div class="form-group" n:if="$form->hasErrors()">
+                        <div class="text-danger" n:foreach="$form->errors as $error">{$error}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label n:name="username">{_messages.sign.Username}</label>
+                        <input n:name="username" type="text" class="form-control" placeholder="{_messages.sign.Username}">
+                    </div>
+                    <div class="form-group">
+                        <label n:name="password">{_messages.sign.Password}</label>
+                        <input n:name="password" type="password" class="form-control" placeholder="{_messages.sign.Username}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">{_messages.sign.Register}</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
