@@ -29,6 +29,8 @@ menu:
     Administration: "Administrace"
     Private: "Soukromé"
     Evidence: "Evidence"
+    Stocks: "Akcie"
+    Service: "Servis"
 homepage:
 	helloWorld: "Ahoj světe!"
 	h1: "Investiční gramotnost - deník"
