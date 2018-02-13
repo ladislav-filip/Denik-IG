@@ -68,6 +68,7 @@ class EvidencePresenter extends BasePresenter
 
     protected function beforeRender()
     {
+        parent::beforeRender();
         $this->template->addFilter('profit', function ($buy, $sale) {
             return ($sale - $buy) / $sale * 100;
         });
