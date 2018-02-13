@@ -23,7 +23,7 @@
                         <th scope="col">{_messages.ig.PriceMarket}</th>
                         <th scope="col">{_messages.ig.Profit}</th>
                         <th scope="col">{_messages.ig.Profit} [%]</th>
-                        <th scope="col">{_messages.ig.Created}</th>
+                        <th scope="col">{_messages.ig.Buyed}</th>
                         <th scope="col"> </th>
                     </tr>
                     </thead>
@@ -39,7 +39,7 @@
                             <td class="text-right"><span>{$d->price_all_now |number:2}</span> $</td>
                             <td class="text-right"><span>{$d->profit |number:2}</span> $</td>
                             <td class="text-right"><span>{$d->profit_proc |number:2}</span>%</td>
-                            <td data-updated="true">{$d->created|date:'%d.%m.%Y'}</td>
+                            <td data-updated="true">{$d->date_event|date:'%d.%m.%Y'}</td>
                             <td>
                                 <a data-remove="true" href="javascript:;"><i data-toggle="tooltip" data-placement="top" title="{_messages.ig.Delete}" class="fa fa-eraser text-danger"></i></a>
                             </td>

@@ -25,6 +25,9 @@ ig:
     Yes: "Ano"
     No: "Ne"
     Manual: "Ručně"
+    DateBuy: "Datum nákupu"
+    Buyed: "Koupeno"
+    WrongDateFormat: "Datum musí být ve formátu dd.mm.rrrr"
 menu:
     Administration: "Administrace"
     Private: "Soukromé"

@@ -6,3 +6,4 @@ evidence:
     requiredCode: "Kód akcie je povinný"
     requiredAmount: "Množství akcií je povinné"
     requiredPrice: "Cena za akcii je povinná"
+    requiredDateBuy: "Datum nákupu je povinné"

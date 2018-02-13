@@ -10,6 +10,7 @@ namespace App\PrivateModule\Presenters\forms;
 
 use Nette\Application\UI\Form;
 use App\Forms\FormFactory;
+use Nette\Utils\DateTime;
 
 class RecordFormFactory
 {
@@ -42,6 +43,13 @@ class RecordFormFactory
             ->setAttribute('maxlength', 150);
         if (!is_null($data)) $el->setAttribute('readonly', 'readonly');
 
+        $form->addText('date_event', $this->translate('DateBuy', 'messages.ig'))
+            ->setAttribute('class', 'datepicker')
+            ->setRequired($this->translate('requiredDateBuy'))
+            ->setAttribute("placeholder", "dd.mm.rrrr")
+            ->addRule($form::PATTERN, $this->translate('WrongDateFormat', 'messages.ig'), "(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d");
+            ;
+
         $form->addText('amount', $this->translate('Amount', 'messages.ig'))
             ->setRequired($this->translate('requiredAmount'))
             ->addRule(Form::INTEGER, $this->translate('ValueMustNumber', 'messages.ig'))
@@ -72,7 +80,8 @@ class RecordFormFactory
                 'code' => $data->code,
                 'amount' => $data->amount,
                 'price' => $data->price,
-                'stock_name' => $data->name
+                'stock_name' => $data->name,
+                'date_event' => (new DateTime($data->date_event))->format('d.m.Y')
             ]);
         }
 

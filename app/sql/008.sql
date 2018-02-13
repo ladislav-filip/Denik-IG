@@ -1,0 +1,1 @@
+update lf_records set date_event = created;

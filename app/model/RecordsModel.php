@@ -11,6 +11,7 @@ namespace App\Model;
 
 use App\Core\UIException;
 use App\DAL\RecordsRepo;
+use Nette\Utils\DateTime;
 
 class RecordsModel extends AbstractModel
 {
@@ -55,6 +56,7 @@ class RecordsModel extends AbstractModel
         unset($values['stock_name']);
         $values['stock_id'] = $stock_id;
         $values['user_id'] = $this->getUser()->getId();
+        $values['date_event'] = DateTime::createFromFormat('d.m.Y', $values['date_event']);
 
         $this->recordsRepo->save($values);
     }
